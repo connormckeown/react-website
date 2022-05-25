@@ -1,25 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Terminal } from './Terminal';
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
+const ColorScheme = {
+  primary: "#3F3F3F",
+  secondary: "#F0DFAF",
+  tertiary: "#EFEFEF",
+};
 
-const Wrapper = styled.section`
-  padding: 4em;
-  background: papayawhip;
+const Container = styled.div`
+  // background-color: ${ColorScheme.primary};
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
 `;
 
 export class App extends React.Component {
   render() {
     return (
-      <Wrapper>
-        <Title>
-          Hello World!
-        </Title>
-      </Wrapper>
+      <Container>
+        <Terminal />
+      </Container>
     )
   }
 }
