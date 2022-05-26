@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Terminal } from './Terminal';
+import { Navbar } from './Navbar'
 
 const ColorScheme = {
   primary: "#3F3F3F",
@@ -8,22 +9,21 @@ const ColorScheme = {
   tertiary: "#EFEFEF",
 };
 
-const Container = styled.div`
-  // background-color: ${ColorScheme.primary};
-  background-color: black;
+const StyledContainer = styled.div`
+  // background-color: black;
   position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  top: 0;
+  inset: 0 0 0 0;
 `;
 
 export class App extends React.Component {
   render() {
     return (
-      <Container>
-        <Terminal />
-      </Container>
+      <div>
+        <StyledContainer>
+          <Navbar />
+          <Terminal />
+        </StyledContainer>
+      </div>
     )
   }
 }

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
+import TerminalOutput from './TerminalOutput';
 
 
-const Screen = styled.div`
+const StyledScreen = styled.div`
   background-color: #3F3F3F;
   color: #F0DFAF;
   margin: auto;
-  margin-top: 5%;
-  width: 90%;
+  // margin-top: 5%;
+  // width: 60%;
+  width: 1200px;
   height: 80vh;
   border: 0.3em double #F0DFAF;
   box-sizing: border-box;
@@ -32,18 +34,6 @@ const StyledInput = styled.input`
   font-size: 18px;
 `;
 
-// displays on connection (ES6 template literal)
-const greeting = `
-   ______                                __  ___     __ __                       
-  / ____/___  ____  ____  ____  _____   /  |/  /____/ //_/__  ____ _      ______ 
- / /   / __ \\/ __ \\/ __ \\/ __ \\/ ___/  / /|_/ / ___/ ,< / _ \\/ __ \\ | /| / / __ \\
-/ /___/ /_/ / / / / / / / /_/ / /     / /  / / /__/ /| /  __/ /_/ / |/ |/ / / / /
-\\____/\\____/_/ /_/_/ /_/\\____/_/     /_/  /_/\\___/_/ |_\\___/\\____/|__/|__/_/ /_/ 
-                                       
-Type 'help' to see a list of available commands.
-
-`;
-
 
 
 /**
@@ -53,7 +43,7 @@ Type 'help' to see a list of available commands.
 export function Terminal() {
 
   const [ input, setInput ] = useState("");
-  const [ output, setOutput ] = useState(greeting); // display greeting initially
+  const [ output, setOutput ] = useState(["greeting"]); // list of command strings, display greeting initially
   const inputRef= useRef();
 
   // defaultly sets the cursor to the text box
@@ -63,8 +53,12 @@ export function Terminal() {
 
   return (
     <div>
-      <Screen onClick={e => {inputRef.current.focus()}}>
-        {output}
+      <StyledScreen onClick={e => {inputRef.current.focus()}}>
+
+        {/* TerminalOutputs rendered here */}
+        { output.map((command, idx) => <TerminalOutput command={command} idx={idx} key={idx}/>) }
+
+        {/* Input line rendered here */}
         <label htmlFor="command">guest@cbmckeown.com $ </label>
         <StyledInput 
           id="command"
@@ -74,32 +68,13 @@ export function Terminal() {
           onChange={e => setInput(e.target.value)} 
           onKeyDown={e => {
             if (e.key === "Enter") {
-              let newOutput = "";
-              newOutput = output  + "guest@cbmckeown.com $ " + input + "\n";
-
-              switch (input) {
-                case "": 
-                  break;
-
-                case "help":
-                  newOutput += "this is the help command\n";
-                  break;
-                
-                case "clear":
-                  newOutput = "";
-                  break;
-                  
-                default:
-                  newOutput += "Invalid command\n";
-                  break;
-              }
-
-              setOutput(newOutput);
+              output.push(input);
+              setOutput(output);
               setInput("");
             }
           }}
         />
-      </Screen>
+      </StyledScreen>
     </div>
   )
 }
