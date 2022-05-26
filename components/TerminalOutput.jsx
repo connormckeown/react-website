@@ -33,7 +33,7 @@ function TerminalOutput ({ command, idx }) {
     case "":
       return (
         <div>
-          guest@cbmckeown.com $ {command} {"\n"}
+          guest@cbmckeown.com $ {"\n"}
         </div>
       );
 
@@ -58,5 +58,6 @@ function TerminalOutput ({ command, idx }) {
   }
 };
 
-// Memoize output already rendered so it doesnt re-render
-export default React.memo(TerminalOutput);
+// Memoize output already rendered so it doesnt re-render ?
+// export default React.memo(TerminalOutput);
+export default TerminalOutput;

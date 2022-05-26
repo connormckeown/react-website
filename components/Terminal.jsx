@@ -35,7 +35,6 @@ const StyledInput = styled.input`
 `;
 
 
-
 /**
  * Output is saved in the state so that it can be added to
  * so the terminal doesn't overwrite itself
@@ -65,15 +64,16 @@ export function Terminal() {
           ref={inputRef}
           type="text" 
           value={input} 
-          onChange={e => setInput(e.target.value)} 
+          onChange={e => setInput(e.target.value)}
           onKeyDown={e => {
-            if (e.key === "Enter") {
-              output.push(input);
-              setOutput(output);
-              setInput("");
+            setOutput(output);
+            if (e.key == "Enter") {
+              setOutput(arr => [...arr, input]);  // set new output state
+              setInput(""); // clear text box
             }
           }}
         />
+
       </StyledScreen>
     </div>
   )
