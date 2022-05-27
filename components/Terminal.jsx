@@ -15,7 +15,7 @@ const StyledScreen = styled.div`
   border: 0.3em double #F0DFAF;
   box-sizing: border-box;
   font-family: 'Cascadia Code', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   padding: 1em;
   white-space: pre-wrap;
   overflow: auto;
@@ -31,9 +31,17 @@ const StyledInput = styled.input`
   background-color: transparent;
   // font-family: 'Source Sans Pro', sans-serif;
   font-family: 'Cascadia Code', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 `;
 
+export const prompt = 
+  <>
+    <span style={{color: "orange"}}>guest</span>
+    <span>@</span>
+    <span style={{color: "lightgreen"}}>cbmckeown.com</span>
+    <span>:$ </span>
+  </>
+; 
 
 /**
  * Output is saved in the state so that it can be added to
@@ -44,21 +52,31 @@ export function Terminal() {
   const [ input, setInput ] = useState("");
   const [ output, setOutput ] = useState(["greeting"]); // list of command strings, display greeting initially
   const inputRef= useRef();
+  const scrollRef = useRef();
 
   // defaultly sets the cursor to the text box
   useEffect(() => {
     inputRef.current.focus()
   },[]);
 
+  // scrolls to the bottom of the terminal when output is updated
+  const scrollToBottom = () => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [output]);
+
   return (
     <div>
       <StyledScreen onClick={e => {inputRef.current.focus()}}>
 
-        {/* TerminalOutputs rendered here */}
+        {/* TerminalOutputs here */}
         { output.map((command, idx) => <TerminalOutput command={command} idx={idx} key={idx}/>) }
 
-        {/* Input line rendered here */}
-        <label htmlFor="command">guest@cbmckeown.com $ </label>
+        {/* Input line here */}
+        <label htmlFor="command">{prompt}</label>
         <StyledInput 
           id="command"
           ref={inputRef}
@@ -68,11 +86,19 @@ export function Terminal() {
           onKeyDown={e => {
             setOutput(output);
             if (e.key == "Enter") {
-              setOutput(arr => [...arr, input]);  // set new output state
+              // have to clear screen here, not in TerminalOutput
+              if (input === "clear") {
+                setOutput([]);
+              } else {
+                setOutput(arr => [...arr, input]);  // set new output state
+              }
               setInput(""); // clear text box
             }
           }}
         />
+
+        {/* dummy div for the scroll ref */}
+        <div ref={scrollRef} />
 
       </StyledScreen>
     </div>
