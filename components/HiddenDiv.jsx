@@ -1,16 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react';
-
-const StyledLink = styled.a`
-  color: orange;
-  display: inline-block;
-  text-decoration: none;
-
-  &:hover {
-    color: lightgreen;
-  }
-`;
+import { StyledLink } from './TerminalOutput'
 
 /**
  * Hovering the link will reveal the hidden div

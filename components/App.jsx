@@ -10,7 +10,9 @@ const ColorScheme = {
 };
 
 const StyledContainer = styled.div`
-  // background-color: black;
+  background-image: url(${"../images/bg-vancouver.jpg"});
+  background-position: center;
+  background-size: cover;
   position: fixed;
   inset: 0 0 0 0;
 `;
