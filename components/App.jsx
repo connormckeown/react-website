@@ -10,7 +10,7 @@ const ColorScheme = {
 };
 
 const StyledContainer = styled.div`
-  background-image: url(${"../images/bg-vancouver.jpg"});
+  background-image: url(${'/bg-vancouver.jpg'});
   background-position: center;
   background-size: cover;
   position: fixed;

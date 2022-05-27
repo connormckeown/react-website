@@ -4,7 +4,7 @@ import { prompt } from './Terminal'
 import HiddenDiv from './HiddenDiv'
 
 // displays on connection (ES6 template literal)
-const greeting = `
+const greetingMessage = `
    ______                                __  ___     __ __                       
   / ____/___  ____  ____  ____  _____   /  |/  /____/ //_/__  ____ _      ______ 
  / /   / __ \\/ __ \\/ __ \\/ __ \\/ ___/  / /|_/ / ___/ ,< / _ \\/ __ \\ | /| / / __ \\
@@ -14,6 +14,28 @@ const greeting = `
 Type 'help' to see a list of available commands.
 
 `;
+
+// const greeting =
+// <>
+//   <div>
+//   {greetingMessage}
+//   </div>
+//   <div>
+//     <img src="/tux.gif" alt="Tux" width={100}/>
+//   </div>  
+// </>
+// ;
+
+const greeting =
+  <div style={{width: "100%", overflow: "hidden"}}>
+    <div style={{width: "800px", float: "left"}}>
+      {greetingMessage}
+    </div>
+    <div style={{marginLeft: "620px", paddingTop: "15px"}}>
+    <img src="/tux.gif" alt="Tux" width={100}/>
+    </div>
+  </div>
+;
 
 const help = `
 
@@ -75,14 +97,14 @@ const social =
     {"\n\n"}
     <a href={"https://www.linkedin.com/in/cbmckeown/"} target="_blank">
       <StyledImg 
-        src="../images/linkedin.png" 
+        src="/linkedin.png" 
         alt="LinkedIn" 
       />
     </a>
     {"\n"}
     <a href={"https://github.com/connormckeown"} target="_blank">
       <StyledImg 
-        src="../images/github.png" 
+        src="/github.png" 
         alt="Github" 
       />
     </a>

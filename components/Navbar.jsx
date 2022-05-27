@@ -13,10 +13,10 @@ const StyledDiv = styled.div`
 export function Navbar() {
   return (
     <StyledDiv>
-      <NavButton text="contact" color="#3F3F3F" />
-      <NavButton text="social" color="#3F3F3F" />
-      <NavButton text="projects" color="#3F3F3F" />
-      <NavButton text="about" color="#3F3F3F" />
+      <NavButton text="contact" color="#F0DFAF" />
+      <NavButton text="social" color="#F0DFAF" />
+      <NavButton text="projects" color="#F0DFAF" />
+      <NavButton text="about" color="#F0DFAF" />
     </StyledDiv>
   );
 }
