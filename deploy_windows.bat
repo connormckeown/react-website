@@ -2,9 +2,13 @@
 @REM This means that the remote branch 'gh-pages' will have to be deleted before you can run this script.
 
 call npm "run" "build"
-@REM cd "dist"
-@REM echo "cbmckeown.com" ">" "CNAME"
-@REM cd ".."
+
+@REM delete the remote gh-pages branch
+git "push" "origin" "--delete" "gh-pages"
+
+cd "dist"
+echo "cbmckeown.com" ">" "CNAME"
+cd ".."
 git "add" "dist" "-f"
 git "commit" "-m" "deploy - adding new dist"
 git "subtree" "push" "--prefix" "dist" "origin" "gh-pages"
