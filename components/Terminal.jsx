@@ -8,11 +8,8 @@ const StyledScreen = styled.div`
   background-color: #3F3F3F;
   color: #F0DFAF;
   margin: auto;
-  // margin-top: 5%;
-  // width: 60%;
-  width: 1200px;
-  height: 80vh;
-  border: 0.3em double #F0DFAF;
+  height: 100vh;
+  border: 0.4em double #F0DFAF;
   box-sizing: border-box;
   font-family: 'Cascadia Code', sans-serif;
   font-size: 16px;

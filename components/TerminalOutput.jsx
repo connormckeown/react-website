@@ -121,7 +121,6 @@ const contact =
   </>
 ;
 
-// text-decoration: "none";
 /**
  * This component is what gets placed above the Terminal components input line
  * 

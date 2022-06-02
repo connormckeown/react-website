@@ -7,7 +7,7 @@ call npm "run" "build"
 git "push" "origin" "--delete" "gh-pages"
 
 cd "dist"
-echo "cbmckeown.com" ">" "CNAME"
+echo cbmckeown.com > CNAME
 cd ".."
 git "add" "dist" "-f"
 git "commit" "-m" "deploy - adding new dist"

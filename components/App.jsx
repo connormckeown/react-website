@@ -10,9 +10,6 @@ const ColorScheme = {
 };
 
 const StyledContainer = styled.div`
-  background-image: url(${'/bg-vancouver.jpg'});
-  background-position: center;
-  background-size: cover;
   position: fixed;
   inset: 0 0 0 0;
 `;
@@ -22,7 +19,7 @@ export class App extends React.Component {
     return (
       <div>
         <StyledContainer>
-          <Navbar />
+          {/* <Navbar /> */}
           <Terminal />
         </StyledContainer>
       </div>
